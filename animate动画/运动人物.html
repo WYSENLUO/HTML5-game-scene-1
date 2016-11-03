@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<style>
+		body{ background-image: url(img/map.jpg); background-repeat: no-repeat}
+		#hero{ position: absolute; top: 200px; left: 200px;} 
+	</style>
+	<script>
+	var up=0,down=0,left=0,right=0;
+	
+		$(function(){
+		var hero=$("#hero");//获取英雄对象	
+			
+			$(document).keydown(function(e){
+				
+				if(e.keyCode==37){
+					animateObj("left",0)
+					
+					/*hero.animate(
+						{
+							left:hero.offset().left-9+"px",
+					},20);//animate
+					
+					//换图片
+					if(left%2==0){
+						hero.attr("src","img/hero/left1.gif");
+					}else if(left%2!=0){
+						hero.attr("src","img/hero/left2.gif");
+					}
+				
+					left++;*/
+				}//if
+				
+				if(e.keyCode==38){ //上
+					animateObj("up",1);
+				}
+				
+				if(e.keyCode==39){ //右
+					animateObj("left",1);
+				}
+				if(e.keyCode==40){ //下
+					animateObj("down",0);
+				}
+			})//keydowm
+		
+		
+			function animateObj(direction,flag){
+				var data={};//声明对象
+				if(direction=="left"&&flag==1){
+					data.left="+=9px";  //右移
+					//换图片右移变换
+					if(right%2==0){
+						hero.attr("src","img/hero/right1.gif");
+					}else if(right%2!=0){
+						hero.attr("src","img/hero/right2.gif");
+					}
+					right++;
+					
+				}else if(direction=="left"&&flag==0){
+					data.left="-=9px";  //右移
+					//换图片左移变换
+					if(left%2==0){
+						hero.attr("src","img/hero/left1.gif");
+					}else if(left%2!=0){
+						hero.attr("src","img/hero/left2.gif");
+					}
+					left++;
+					
+				}else if(direction=="up"&&flag==1){
+					data.top="-=9px";  //上移
+					//图片上移变换
+					if(up%2==0){
+						hero.attr("src","img/hero/up1.gif");
+					}else if(up%2!=0){
+						hero.attr("src","img/hero/up2.gif");
+					}
+					up++;
+					
+				}else if(direction=="down"&&flag==0){
+					data.top=hero.offset().top+9+"px";  //下移
+					
+					if(down%2==0){
+						hero.attr("src","img/hero/down1.gif");
+					}else if(down%2!=0){
+						hero.attr("src","img/hero/down2.gif");
+					}
+					left++;
+				}
+				$("#hero").animate(data,20)
+			}
+		})
+	</script>
+	<body>
+		<img src="img/hero/down1.gif" id="hero" /> <!--英雄图片-->
+	</body>
+</html>
